@@ -3486,14 +3486,14 @@ html[data-pxt-on] canvas[data-pxt-ui="bg"] { display: block !important; }
     command: runCommand,
   };
 
+  let lastPeriod = null;
   function checkAutoCycle(force) {
     if (!cfg.autoCycle) return;
     const hr = new Date().getHours();
-    const isDay = hr >= 6 && hr < 18;
-    const target = isDay ? 'sakura' : 'hoian';
-    if (cfg.theme !== target || force) {
-      commit(target);
-    }
+    const period = hr >= 6 && hr < 18 ? 'day' : 'night';
+    // Chỉ đổi khi vừa chuyển giữa ngày và đêm (hoặc lúc vừa tick ô), để không đè lên theme bạn tự chọn.
+    if (force || (lastPeriod && period !== lastPeriod)) commit(period === 'day' ? 'sakura' : 'hoian');
+    lastPeriod = period;
   }
 
   function boot() {
