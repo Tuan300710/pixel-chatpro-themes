@@ -2,7 +2,7 @@
 // @name         Pixel ChatPro Themes
 // @name:vi      Pixel ChatPro Themes – hình nền pixel cho claude.ai
 // @namespace    https://github.com/Tuan300710/pixel-chatpro-themes
-// @version      2.1.0
+// @version      2.1.1
 // @description  Animated pixel/ASCII wallpapers behind the claude.ai chat. Type /theme to pick one.
 // @description:vi Hình nền pixel/ASCII chuyển động phía sau khung chat claude.ai. Gõ /theme để chọn.
 // @author       Tuan300710 (dựa trên bản gốc của aqua2409z)
@@ -2617,7 +2617,49 @@
       }
     },
   });
-
+  /* ===== THEME CỦA TÔI: Mưa đêm ===== */
+  THEMES.push({
+    id: 'mua',
+    name: 'Mưa đêm',
+    dark: true,
+    alias: ['mua', 'mua dem', 'rain'],
+    glyphs: '|:.',
+    // Nền: vẽ 1 lần (trời đêm chuyển màu + quầng đèn đường)
+    bg(c, w, h) {
+      vgrad(c, w, h, ['#0b1020', '#16213e', '#1f2b4a']);
+      rglow(c, w * 0.2, h * 0.75, Math.max(w, h) * 0.35, '#ffb85c', 0.25);
+    },
+    // Tạo các hạt mưa ban đầu
+    init(w) {
+      const n = Math.round(clamp((w.cols * w.rows) / 25, 30, 160) * (cfg.density || 1));
+      w.s.drops = Array.from({ length: n }, () => ({ x: rnd(0, w.cols), y: rnd(0, w.rows), v: rnd(10, 18), len: Math.round(rnd(2, 4)) }));
+    },
+    // Mỗi khung hình: cho mưa rơi xuống
+    frame(w, dt) {
+      const sp = cfg.speed || 1;
+      const ground = w.rows - 2;
+      // mặt đất ướt
+      for (let x = 0; x < w.cols; x++) {
+        w.tile(x, ground + 1, '#141c30', '#2a3a5c', '_');
+        w.tile(x, ground, null, '#3b4f78', '~', 0.4);
+      }
+      for (const d of w.s.drops) {
+        d.y += d.v * dt * sp;
+        d.x -= d.v * 0.15 * dt * sp; // gió thổi nghiêng
+        if (d.y > ground) {
+          w.tile(d.x, ground, null, '#9fc4ff', '*', 0.8); // tóe nước
+          d.y = rnd(-6, 0);
+          d.x = rnd(0, w.cols + 5);
+        }
+        for (let k = 0; k < d.len; k++) w.tile(d.x + k * 0.15, d.y - k, null, '#8fb3ff', '|', 0.9 - k * 0.25);
+      }
+    },
+  });
+  /* ===== HẾT THEME CỦA TÔI ===== */
+ 
+  
+  
+  
   const ITEMS = THEMES.map((t) => t.id).concat('off');
   const byId = (id) => THEMES.find((t) => t.id === id);
 
