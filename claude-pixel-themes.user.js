@@ -1,21 +1,21 @@
 // ==UserScript==
-// @name         Pixel Chat Themes
-// @name:vi      Pixel Chat Themes – hình nền pixel cho claude.ai
-// @namespace    https://github.com/aqua2409z/pixel-chat-themes
+// @name         Pixel ChatPro Themes
+// @name:vi      Pixel ChatPro Themes – hình nền pixel cho claude.ai
+// @namespace    https://github.com/Tuan300710/pixel-chatpro-themes
 // @version      2.1.0
 // @description  Animated pixel/ASCII wallpapers behind the claude.ai chat. Type /theme to pick one.
 // @description:vi Hình nền pixel/ASCII chuyển động phía sau khung chat claude.ai. Gõ /theme để chọn.
-// @author       aqua2409z
+// @author       Tuan300710 (dựa trên bản gốc của aqua2409z)
 // @license      MIT
-// @homepageURL  https://github.com/aqua2409z/pixel-chat-themes
-// @supportURL   https://github.com/aqua2409z/pixel-chat-themes/issues
+// @homepageURL  https://github.com/Tuan300710/pixel-chatpro-themes
+// @supportURL   https://github.com/Tuan300710/pixel-chatpro-themes/issues
 // @match        https://claude.ai/*
 // @grant        none
 // @run-at       document-idle
 // @inject-into  content
 // @noframes
-// @updateURL    https://raw.githubusercontent.com/aqua2409z/pixel-chat-themes/main/claude-pixel-themes.user.js
-// @downloadURL  https://raw.githubusercontent.com/aqua2409z/pixel-chat-themes/main/claude-pixel-themes.user.js
+// @updateURL    https://raw.githubusercontent.com/Tuan300710/pixel-chatpro-themes/main/claude-pixel-themes.user.js
+// @downloadURL  https://raw.githubusercontent.com/Tuan300710/pixel-chatpro-themes/main/claude-pixel-themes.user.js
 // ==/UserScript==
 
 /*
